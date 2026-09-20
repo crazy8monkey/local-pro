@@ -1,6 +1,6 @@
 import app from './app';
 
-const PORT:number = Number(process.env.PORT) || 3001;
+const PORT:number = Number(process.env.PORT) || 3008;
 
 app.listen(PORT, (): void => {
     console.log(`User service is on port ${PORT}`)
