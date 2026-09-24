@@ -1,4 +1,5 @@
-import express, { type Expres, type Request, type Response } from 'express';
+import express, { type Express, type Request, type Response } from 'express';
+import userRoutes from './routes/user.routes.js'
 
 const app:Express = express();
 
@@ -8,23 +9,17 @@ const app:Express = express();
 app.use(express.json());
 
 /**
+ * User Routes
+ */
+app.use("/users", userRoutes);
+
+/**
  * User service health check 
  */
 app.get("/health", (_req:Request, res:Response) => {
     res.status(200).json({
         service: 'user-service',
         status: 'ok'
-    })
-});
-
-/**
- * User service API
- */
-app.get("/user", (_req:Request, res:Response) => {
-    res.status(200).json({
-        name: "LocalPro API",
-        version: "1.0.0",
-        service: "user-service"
     })
 });
 
