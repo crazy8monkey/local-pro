@@ -1,6 +1,7 @@
 import app from './app';
 import { env } from './config/env' 
+import { logger } from '@localpro/logger';
 
 app.listen(env.port, (): void => {
-    console.log(`Appointment service is on port ${env.port}`)
+    logger.info(`Appointment service is on port ${env.port}`);
 })
