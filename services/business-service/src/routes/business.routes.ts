@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getBusinessService } from '../controllers/business.controllers.js'
+import { getBusinessService } from '../controllers/business.controllers'
 
 const router:Router = Router();
 

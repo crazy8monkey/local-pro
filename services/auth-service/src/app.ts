@@ -1,5 +1,5 @@
 import express, { type Express, type Request, type Response } from 'express';
-import authRoutes from './routes/auth.routes.js'
+import authRoutes from './routes/auth.routes'
 
 const app:Express = express();
 

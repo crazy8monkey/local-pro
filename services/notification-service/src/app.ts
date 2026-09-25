@@ -1,5 +1,5 @@
 import express, { type Express, type Request, type Response} from 'express';
-import notificationRoutes from './routes/notifcation.routes.js'
+import notificationRoutes from './routes/notifcation.routes'
 
 const app:Express = express();
 

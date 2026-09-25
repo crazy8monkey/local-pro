@@ -1,5 +1,5 @@
 import express, { type Express, type Request, type Response} from 'express';
-import businessRoutes from './routes/business.routes.js'
+import businessRoutes from './routes/business.routes'
 
 const app:Express = express();
 
