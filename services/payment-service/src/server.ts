@@ -1,7 +1,6 @@
 import app from './app'
+import { env } from './config/env' 
 
-const PORT:number = Number(process.env.PORT) || 3005;
-
-app.listen(PORT, (): void => {
-    console.log(`Payment service is on port ${PORT}`)
-});
+app.listen(env.port, (): void => {
+    console.log(`Payment service is on port ${env.port}`)
+})

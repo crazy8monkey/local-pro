@@ -1,5 +1,5 @@
 import express, {type Express, type Request, type Response} from 'express';
-import reviewRoutes from './routes/review.routes.js'
+import reviewRoutes from './routes/review.routes'
 
 const app:Express = express();
 
