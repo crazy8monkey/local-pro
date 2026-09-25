@@ -1,4 +1,5 @@
 import express, { type Express, type Request, type Response} from 'express';
+import notificationRoutes from './routes/notifcation.routes'
 
 const app:Express = express();
 
@@ -8,23 +9,17 @@ const app:Express = express();
 app.use(express.json());
 
 /**
+ * Payment Routes
+ */
+app.use("/notification", notificationRoutes);
+
+/**
  * Health Check
  */
 app.get("/health", (_req:Request, res:Response) => {
     res.status(200).json({
         service: 'notificaiton-service',
         status: 'ok'
-    })
-});
-
-/**
- * Notification Service
- */
-app.get("/notification", (_req:Request, res:Response) => {
-    res.status(200).json({
-        name: "LocalPro API",
-        version: "1.0.0",
-        service: "notificaiton-service"
     })
 });
 

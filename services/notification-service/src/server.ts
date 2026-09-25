@@ -1,7 +1,6 @@
 import app from './app';
+import { env } from './config/env' 
 
-const PORT:number = Number(process.env.PORT) || 3004
-
-app.listen(PORT, (): void => {
-    console.log(`Notification service is on port ${PORT}`);
+app.listen(env.port, (): void => {
+    console.log(`Notification service is on port ${env.port}`)
 })

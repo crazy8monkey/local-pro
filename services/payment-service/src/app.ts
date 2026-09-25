@@ -1,4 +1,5 @@
 import express, { type Express, type Request, type Response } from 'express';
+import paymentRoutes from './routes/payment.routes.js'
 
 const app:Express = express();
 
@@ -8,23 +9,17 @@ const app:Express = express();
 app.use(express.json());
 
 /**
+ * Payment Routes
+ */
+app.use("/payment", paymentRoutes);
+
+/**
  * Health Check
  */
 app.get('/health', (_req:Request, res:Response) => {
     res.status(200).json({
         service: 'payment-service',
         status: 'ok'
-    })
-});
-
-/**
- * Payment Service API
- */
-app.get('/payment', (_req:Request, res:Response) => {
-    res.status(200).json({
-        name: "LocalPro API",
-        version: "1.0.0",
-        service: "payment-service"
     })
 });
 
