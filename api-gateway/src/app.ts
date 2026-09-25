@@ -1,5 +1,6 @@
-import express, { type Express, type Request, type Response} from 'express';
-import apiGatewayRoutes from './routes/api.routes.js'
+import express, { type Express } from 'express';
+import apiGatewayRoutes from './routes/api.routes'
+import healthRoutes from './routes/health.routes';
 
 const app:Express = express();
 
@@ -14,16 +15,8 @@ app.use(express.json())
 app.use("/api", apiGatewayRoutes);
 
 /**
- * API Gateway health check
- *
- * Used to confirm that the API Gateway
- * application is running.
+ * API health check 
  */
-app.get("/health", (__req:Request, res:Response) => {
-    res.status(200).json({
-        service: 'api-gateway',
-        status: 'ok'
-    })
-});
+app.use("/health", healthRoutes);
 
 export default app;

@@ -1,4 +1,4 @@
-import express, { type Express, type Response, type Request} from 'express';
+import express, { type Express } from 'express';
 import appointmentRoutes from './routes/appointment.routes'
 import healthRoutes from './routes/health.routes';
 
