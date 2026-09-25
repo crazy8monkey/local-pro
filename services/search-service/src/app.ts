@@ -1,5 +1,6 @@
 import express, {type Express, type Request, type Response} from 'express';
 import searchRoutes from './routes/search.routes'
+import healthRoutes from './routes/health.routes.js'
 
 const app:Express = express();
 
@@ -14,13 +15,8 @@ app.use(express.json());
 app.use("/search", searchRoutes);
 
 /**
- * Health Check
+ * Search service health check 
  */
-app.get("/health", (_req:Request, res:Response) => {
-    res.status(200).json({
-        service: 'search-service',
-        status: 'ok'
-    })
-});
+app.use("/health", healthRoutes);
 
 export default app;
