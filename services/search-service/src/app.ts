@@ -1,5 +1,5 @@
 import express, {type Express, type Request, type Response} from 'express';
-import searchRoutes from './routes/search.routes'
+import searchRoutes from './routes/search.routes.js'
 
 const app:Express = express();
 
