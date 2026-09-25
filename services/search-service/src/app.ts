@@ -1,6 +1,6 @@
-import express, {type Express, type Request, type Response} from 'express';
-import searchRoutes from './routes/search.routes.js'
-import healthRoutes from './routes/health.routes.js'
+import express, {type Express} from 'express';
+import searchRoutes from './routes/search.routes'
+import healthRoutes from './routes/health.routes'
 
 const app:Express = express();
 
