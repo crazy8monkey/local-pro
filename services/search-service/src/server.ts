@@ -1,7 +1,6 @@
 import app from './app';
+import { env } from './config/env' 
 
-const PORT:number = Number(process.env.PORT) || 3007;
-
-app.listen(PORT, (): void => {
-    console.log(`Search Service is on port ${PORT}`);
+app.listen(env.port, (): void => {
+    console.log(`Search service is on port ${env.port}`)
 })

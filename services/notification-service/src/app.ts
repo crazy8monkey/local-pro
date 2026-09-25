@@ -1,5 +1,6 @@
-import express, { type Express, type Request, type Response} from 'express';
-import notificationRoutes from './routes/notifcation.routes.js'
+import express, { type Express } from 'express';
+import notificationRoutes from './routes/notifcation.routes';
+import healthRoutes from './routes/health.routes';
 
 const app:Express = express();
 
@@ -14,13 +15,8 @@ app.use(express.json());
 app.use("/notification", notificationRoutes);
 
 /**
- * Health Check
+ * Notification service health check 
  */
-app.get("/health", (_req:Request, res:Response) => {
-    res.status(200).json({
-        service: 'notificaiton-service',
-        status: 'ok'
-    })
-});
+app.use("/health", healthRoutes);
 
 export default app;

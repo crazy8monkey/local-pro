@@ -1,5 +1,6 @@
 import express, { type Express, type Response, type Request} from 'express';
-import appointmentRoutes from './routes/appointment.routes.js'
+import appointmentRoutes from './routes/appointment.routes'
+import healthRoutes from './routes/health.routes';
 
 const app:Express = express();
 
@@ -14,13 +15,8 @@ app.use(express.json());
 app.use("/appointment", appointmentRoutes);
 
 /**
- * Health check
+ * Appointment service health check 
  */
-app.get("/health", (_req:Request, res:Response) => {
-    res.status(200).json({
-        service: 'appointment-service',
-        status: 'ok'
-    })
-});
+app.use("/health", healthRoutes);
 
 export default app;
