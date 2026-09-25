@@ -1,7 +1,6 @@
 import app from "./app.js";
+import { env } from "./config/env";
 
-const PORT: number = Number(process.env.PORT) || 3000;
-
-app.listen(PORT, (): void => {
-    console.log(`API Gateway running on port ${PORT}`);
+app.listen(env.port, (): void => {
+    console.log(`API Gateway running on port ${env.port}`);
 });
