@@ -1,4 +1,5 @@
 import express, { type Express, type Request, type Response } from 'express';
+import authRoutes from './routes/auth.routes.js'
 
 const app:Express = express();
 
@@ -6,6 +7,11 @@ const app:Express = express();
  * Middleware
  */
 app.use(express.json())
+
+/**
+ * Auth Routes
+ */
+app.use("/auth", authRoutes);
 
 /**
  * Auth Service Health Check
@@ -16,16 +22,5 @@ app.get("/health", (_req:Request, res:Response) => {
         status: 'ok'
     })
 })
-
-/**
- * Auth Service API
- */
-app.get("/auth", (_req:Request, res:Response) => {
-    res.status(200).json({
-        name: "LocalPro API",
-        version: "1.0.0",
-        service: "auth-service"
-    })
-});
 
 export default app;
