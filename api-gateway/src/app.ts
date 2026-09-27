@@ -1,6 +1,6 @@
 import express, { type Express } from 'express';
-import apiGatewayRoutes from './routes/api.routes'
 import healthRoutes from './routes/health.routes';
+import userRoutes from './routes/user.routes'
 
 const app:Express = express();
 
@@ -10,9 +10,9 @@ const app:Express = express();
 app.use(express.json())
 
 /**
- * API Routes
+ * User API Routes
  */
-app.use("/api", apiGatewayRoutes);
+app.use("/api/users", userRoutes);
 
 /**
  * API health check 
