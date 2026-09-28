@@ -3,6 +3,10 @@ import healthRoutes from './routes/health.routes';
 import appointmentRoutes from './routes/appointment.routes';
 import authRoutes from './routes/auth.routes';
 import businessRoutes from './routes/business.routes';
+import notificationRoutes from './routes/notification.routes';
+import paymentRoutes from './routes/payment.routes';
+import reviewRoutes from './routes/review.routes';
+import searchRoutes from './routes/search.routes';
 import userRoutes from './routes/user.routes';
 
 const app:Express = express();
@@ -24,14 +28,34 @@ app.use("/api/appointment", appointmentRoutes);
 app.use("/api/auth", authRoutes);
 
 /**
- * Auth API Routes
+ * Business API Routes
  */
 app.use("/api/business", businessRoutes);
 
 /**
- * User API Routes
+ * Notification API Routes
  */
-app.use("/api/users", userRoutes);
+app.use("/api/notification", notificationRoutes);
+
+/**
+ * Payment API Routes
+ */
+app.use("/api/payment", paymentRoutes);
+
+/**
+ * Review API Routes
+ */
+app.use("/api/review", reviewRoutes);
+
+/**
+ * Review API Routes
+ */
+app.use("/api/search", reviewRoutes);
+
+/**
+ * Search API Routes
+ */
+app.use("/api/users", searchRoutes);
 
 
 /**
