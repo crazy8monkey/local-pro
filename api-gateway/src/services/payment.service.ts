@@ -1,9 +1,8 @@
 import { env } from '../config/env'
+import { serviceRequest } from './service-client';
 
 export const getPaymentService = async(): Promise<unknown> => {
-    const response = await fetch(`${env.paymentServiceUrl}/payment`);
-
-    const data: unknown = await response.json();
-
-    return data;
+    return serviceRequest(
+       `${env.paymentServiceUrl}/payment`
+    );
 }

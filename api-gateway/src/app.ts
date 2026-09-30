@@ -8,59 +8,40 @@ import paymentRoutes from './routes/payment.routes';
 import reviewRoutes from './routes/review.routes';
 import searchRoutes from './routes/search.routes';
 import userRoutes from './routes/user.routes';
+import { errorMiddleWare } from './middleware/error.middleware';
 
 const app:Express = express();
 
-/**
- * Middleware
- */
+/* Middleware */
 app.use(express.json())
 
-/**
- * Auth API Routes
- */
+/* Auth API Routes */
 app.use("/api/appointment", appointmentRoutes);
 
-
-/**
- * Auth API Routes
- */
+/* Auth API Routes */
 app.use("/api/auth", authRoutes);
 
-/**
- * Business API Routes
- */
+/* Business API Routes */
 app.use("/api/business", businessRoutes);
 
-/**
- * Notification API Routes
- */
+/* Notification API Routes */
 app.use("/api/notification", notificationRoutes);
 
-/**
- * Payment API Routes
- */
+/* Payment API Routes */
 app.use("/api/payment", paymentRoutes);
 
-/**
- * Review API Routes
- */
+/* Review API Routes */
 app.use("/api/review", reviewRoutes);
 
-/**
- * Search API Routes
- */
+/* Search API Routes */
 app.use("/api/search", searchRoutes);
 
-/**
- * User API Routes
- */
+/* User API Routes */
 app.use("/api/users", userRoutes);
 
-
-/**
- * API health check 
- */
+/* API health check */
 app.use("/health", healthRoutes);
+
+app.use(errorMiddleWare);
 
 export default app;
