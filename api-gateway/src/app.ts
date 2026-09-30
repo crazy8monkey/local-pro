@@ -50,7 +50,7 @@ app.use("/api/review", reviewRoutes);
 /**
  * Search API Routes
  */
-app.use("/api/search", reviewRoutes);
+app.use("/api/search", searchRoutes);
 
 /**
  * User API Routes
