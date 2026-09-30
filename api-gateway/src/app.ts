@@ -1,6 +1,13 @@
 import express, { type Express } from 'express';
 import healthRoutes from './routes/health.routes';
-import userRoutes from './routes/user.routes'
+import appointmentRoutes from './routes/appointment.routes';
+import authRoutes from './routes/auth.routes';
+import businessRoutes from './routes/business.routes';
+import notificationRoutes from './routes/notification.routes';
+import paymentRoutes from './routes/payment.routes';
+import reviewRoutes from './routes/review.routes';
+import searchRoutes from './routes/search.routes';
+import userRoutes from './routes/user.routes';
 
 const app:Express = express();
 
@@ -10,9 +17,46 @@ const app:Express = express();
 app.use(express.json())
 
 /**
- * User API Routes
+ * Auth API Routes
  */
-app.use("/api/users", userRoutes);
+app.use("/api/appointment", appointmentRoutes);
+
+
+/**
+ * Auth API Routes
+ */
+app.use("/api/auth", authRoutes);
+
+/**
+ * Business API Routes
+ */
+app.use("/api/business", businessRoutes);
+
+/**
+ * Notification API Routes
+ */
+app.use("/api/notification", notificationRoutes);
+
+/**
+ * Payment API Routes
+ */
+app.use("/api/payment", paymentRoutes);
+
+/**
+ * Review API Routes
+ */
+app.use("/api/review", reviewRoutes);
+
+/**
+ * Review API Routes
+ */
+app.use("/api/search", reviewRoutes);
+
+/**
+ * Search API Routes
+ */
+app.use("/api/users", searchRoutes);
+
 
 /**
  * API health check 
