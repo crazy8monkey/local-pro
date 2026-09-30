@@ -48,12 +48,12 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/review", reviewRoutes);
 
 /**
- * Review API Routes
+ * Search API Routes
  */
 app.use("/api/search", reviewRoutes);
 
 /**
- * Search API Routes
+ * User API Routes
  */
 app.use("/api/users", userRoutes);
 
