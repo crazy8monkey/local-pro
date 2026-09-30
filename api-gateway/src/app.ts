@@ -55,7 +55,7 @@ app.use("/api/search", reviewRoutes);
 /**
  * Search API Routes
  */
-app.use("/api/users", searchRoutes);
+app.use("/api/users", userRoutes);
 
 
 /**
