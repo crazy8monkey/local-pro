@@ -52,6 +52,7 @@ app.use("/api/review", reviewRoutes);
  */
 app.use("/api/search", searchRoutes);
 
+<<<<<<< Updated upstream
 /**
  * User API Routes
  */
@@ -61,6 +62,9 @@ app.use("/api/users", userRoutes);
 /**
  * API health check 
  */
+=======
+/* API health check */
+>>>>>>> Stashed changes
 app.use("/health", healthRoutes);
 
 export default app;
