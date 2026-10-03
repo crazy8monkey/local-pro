@@ -1,10 +1,8 @@
-import express, { type Express } from 'express';
-
 import { registerServiceRoutes } from "./bootstrap/register-service-routes.js";
 import { env } from "./config/env";
+import app from './app'
 import { logger } from '@localpro/logger';
 
-const app:Express = express();
 
 const startServer = async(): Promise<void> => {
     try {
