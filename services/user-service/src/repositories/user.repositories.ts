@@ -5,17 +5,20 @@ export const findUsers = async(): Promise<User[]> => {
         {
             id: 1,
             firstName: "Adam",
-            lastName: "Schmidt"
+            lastName: "Schmidt",
+            email:"youremail@blah.com"
         },
         {
             id: 2,
             firstName: "Adam",
-            lastName: "Schmidt"
+            lastName: "Schmidt",
+            email:"youremail@blah.com"
         },
         {
             id: 3,
             firstName: "Adam",
-            lastName: "Schmidt"
+            lastName: "Schmidt",
+            email:"youremail@blah.com"
         }
     ]
 }
