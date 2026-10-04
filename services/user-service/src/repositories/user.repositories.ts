@@ -22,3 +22,13 @@ export const findUsers = async(): Promise<User[]> => {
         }
     ]
 }
+
+
+export const findUser = async(): Promise<User> => {
+    return {
+        id: 1,
+        firstName: "Adam",
+        lastName: "Schmidt",
+        email:"youremail@blah.com"
+    }
+}
