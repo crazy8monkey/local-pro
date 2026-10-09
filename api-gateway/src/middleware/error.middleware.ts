@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler, Request, Response } from "express";
 import { logger } from "@localpro/logger";
-import { ApiError } from "../errors/api.error";
+import { ApiError } from "@localpro/error";
 
 
 export const errorMiddleWare: ErrorRequestHandler = (
