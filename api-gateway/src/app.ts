@@ -10,8 +10,6 @@ const app:Express = express();
 /* Middleware */
 app.use(express.json());
 
-app.use(errorMiddleWare);
-
 /* Request Logger Middleware */
 app.use(requestId);
 app.use(requestLogger);

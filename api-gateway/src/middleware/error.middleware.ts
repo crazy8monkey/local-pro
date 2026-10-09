@@ -1,31 +1,27 @@
 import type { ErrorRequestHandler, Request, Response } from "express";
 import { logger } from "@localpro/logger";
-import { GatewayError } from "../errors/gateway.error";
+import { ApiError } from "../errors/api.error";
 
 
 export const errorMiddleWare: ErrorRequestHandler = (
     error:unknown,
-    _req:Request,
+    req:Request,
     res: Response,
     _next:unknown
 ): void => {
-    if(error instanceof GatewayError) {
+    if(error instanceof ApiError) {
         res.status(error.statusCode).json({
-            error: {
-                code: error.code,
-                message: error.message
-            }
-        })
+            message: error.message,
+            requestId: req.requestId
+        });
 
         return
     }
 
-    logger.error(`Unexpected Gateway error: ${error}`)
+    logger.error(`Unexpected API error: [${req.requestId}] ${error}`)
 
     res.status(500).json({
-        error: {
-            code: "INTERNAL_SERVER_ERROR",
-            message: "An unexpected error occured."
-        }
+        message: "Internal Server Error",
+        requestId: req.requestId
     })
 }
