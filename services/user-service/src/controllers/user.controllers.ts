@@ -4,7 +4,8 @@ import {
     getUser as getUserService 
 } from '../services/user.services';
 import { logger } from '@localpro/logger';  
-import { ApiError } from '@localpro/error'; 
+import { ApiError, type ApiErrorField } from '@localpro/error'; 
+import { createUserSchema, updateUserSchema, type CreateUserInput } from '../schema/user.validator';
 
 
 export const getUsers = async(
@@ -30,25 +31,25 @@ export const createUser = async(
     res:Response,
     next:NextFunction
 ): Promise<void> => {
+    const result = createUserSchema.safeParse(req.body)
+
+    if(!result.success) {
+        const errors:ApiErrorField[] = result.error.issues.map(
+            (issue) => ({
+                message: issue.message,
+                field: issue.path.join(".")
+            })
+        )
+
+        next(new ApiError(
+            400, 
+            "Request Validation Failed",
+            errors
+        ));
+    }
+    
     const { firstName, lastName, email } = req.body;
     const response = { firstName, lastName, email };
-
-    //validate properties exist
-    if(!firstName || !lastName || !email) {
-        next(new ApiError(400, "firstName, lastName, email are required"));
-    }
-    //validate if its string value
-    if(typeof firstName !== "string" || 
-       typeof lastName !== "string" || 
-       typeof email !== "string"
-    ) {
-        next(new ApiError(400, "firstName, lastName, email must be string values"));
-    }
-
-    //validate email format
-    if(!email.includes("@")) {
-        next(new ApiError(400, "Invalid email address"));
-    }
 
     logger.info(`${response}`);
 
@@ -61,26 +62,29 @@ export const updateUser = async(
     next:NextFunction
 ): Promise<void> => {   
     // grabbing user id -> req.params.id
+    const result = updateUserSchema.safeParse(req.body);
+
+    if(!result.success) {
+        const errors:ApiErrorField[] = result.error.issues.map(
+            (issue) => ({
+                message: issue.message,
+                field: issue.path.join(".")
+            })
+        )
+
+        next(new ApiError(
+            400, 
+            "Request Validation Failed",
+            errors
+        ));
+    }
 
     const { firstName, lastName, email } = req.body;
-    const response = { firstName, lastName, email };
-
-    //validate properties exist
-    if(!firstName || !lastName || !email) {
-        next(new ApiError(400, "firstName, lastName, email are required"));
-    }
-    //validate if its string value
-    if(typeof firstName !== "string" || 
-       typeof lastName !== "string" || 
-       typeof email !== "string"
-    ) {
-        next(new ApiError(400, "firstName, lastName, email must be string values"));
-    }
-
-    //validate email format
-    if(!email.includes("@")) {
-        next(new ApiError(400, "Invalid email address"));
-    }
+    const response = { 
+        ...(firstName !== undefined && {firstName }), 
+        ...(lastName !== undefined && {lastName }), 
+        ...(email !== undefined && {email }), 
+    };
 
     logger.info(`${response}`);
 

@@ -12,7 +12,8 @@ export const errorMiddleWare: ErrorRequestHandler = (
     if(error instanceof ApiError) {
         res.status(error.statusCode).json({
             message: error.message,
-            requestId: req.requestId
+            requestId: req.requestId,
+            errors: error.errors
         });
 
         return
