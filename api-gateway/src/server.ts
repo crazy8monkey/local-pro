@@ -2,7 +2,7 @@ import { registerServiceRoutes } from "./bootstrap/register-service-routes.js";
 import { env } from "./config/env";
 import app from './app'
 import { logger } from '@localpro/logger';
-
+import { errorMiddleWare } from "./middleware/error.middleware.js";
 
 const startServer = async(): Promise<void> => {
     try {
@@ -45,7 +45,9 @@ const startServer = async(): Promise<void> => {
             app,
             "/api/users",
             "../services/user-service/src/routes"
-        )
+        );
+
+        app.use(errorMiddleWare);
          
         app.listen(env.port, (): void => {
             logger.info(`API Gateway service is on port ${env.port}`);
