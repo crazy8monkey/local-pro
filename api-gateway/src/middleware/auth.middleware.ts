@@ -10,6 +10,9 @@ export const authMiddleware = (
     next:NextFunction
 ): void => {
     try {
+        delete req.headers["x-auth-user-id"];
+        delete req.headers["x-auth-user-role"];
+
         const authorization = req.headers.authorization;
         if(!authorization?.startsWith("Bearer ")) {
             throw new ApiError(
