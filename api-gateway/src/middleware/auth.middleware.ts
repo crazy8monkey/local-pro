@@ -4,6 +4,25 @@ import jwt from 'jsonwebtoken';
 import type { AccessTokenPayload } from "../types/access-token.type";
 import type { AuthenticatedUser } from "../types/authenticated-user.type";
 
+interface PublicRoute {
+    method: string;
+    path: string;
+}
+
+const publicRoutes:PublicRoute[] = [
+    { method: "POST", path: "/api/auth/register"},
+    { method: "POST", path: "/api/auth/login"}
+];
+
+const isPublicRoute = (req: Request): boolean => {
+    return publicRoutes.some(
+        (route) => 
+            route.method === req.method &&
+            route.path === req.path
+    )
+}
+
+
 export const authMiddleware = (
     req:Request,
     res: Response,
@@ -12,6 +31,12 @@ export const authMiddleware = (
     try {
         delete req.headers["x-auth-user-id"];
         delete req.headers["x-auth-user-role"];
+
+        //Skip JWT authentication
+        if(isPublicRoute(req)) {
+            next();
+            return;
+        }
 
         const authorization = req.headers.authorization;
         if(!authorization?.startsWith("Bearer ")) {
