@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "npm run build:packages && concurrently --names \"GATEWAY\" \"npm run dev --workspace api-gateway\"",
     "build": "npm run build:packages && npm run build:apps",
-    "build:packages": "npm run build --workspace=@localpro/error && npm run build --workspace=@localpro/logger",
+    "build:packages": "npm run build --workspace=@localpro/error && npm run build --workspace=@localpro/logger && npm run build --workspace=@localpro/authorization",
     "build:apps": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
