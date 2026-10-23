@@ -4,7 +4,7 @@ import {
     getUser as getUserService 
 } from '../services/user.services';
 import { logger } from '@localpro/logger';  
-import { ApiError, type ApiErrorField } from '@localpro/error'; 
+import { ApiError, type ApiErrorField, getValidationErrors } from '@localpro/error'; 
 import { createUserSchema, updateUserSchema, type CreateUserInput } from '../schema/user.validator';
 
 
@@ -34,12 +34,7 @@ export const createUser = async(
     const result = createUserSchema.safeParse(req.body)
 
     if(!result.success) {
-        const errors:ApiErrorField[] = result.error.issues.map(
-            (issue) => ({
-                message: issue.message,
-                field: issue.path.join(".")
-            })
-        )
+        const errors:ApiErrorField[] = getValidationErrors(result.error.issues);
 
         next(new ApiError(
             400, 
@@ -65,12 +60,7 @@ export const updateUser = async(
     const result = updateUserSchema.safeParse(req.body);
 
     if(!result.success) {
-        const errors:ApiErrorField[] = result.error.issues.map(
-            (issue) => ({
-                message: issue.message,
-                field: issue.path.join(".")
-            })
-        )
+        const errors:ApiErrorField[] = getValidationErrors(result.error.issues);
 
         next(new ApiError(
             400, 
