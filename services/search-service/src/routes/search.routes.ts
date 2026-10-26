@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getSearchService } from '../controllers/search.controllers'
+import { getBusinessById, getSearchService, searchBusinesses } from '../controllers/search.controllers'
 
 const router:Router = Router();
 
-router.get("/", getSearchService);
+router.get("/", searchBusinesses);
+router.get("/:businessId", getBusinessById);
 
 export default router;
