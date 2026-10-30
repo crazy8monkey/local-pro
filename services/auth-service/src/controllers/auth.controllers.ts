@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response} from 'express';
 import { loginSchema, registerSchema } from '../schema/auth.validator';
-import { ApiError, type ApiErrorField } from '@localpro/error'; 
+import { ApiError, type ApiErrorField, getValidationErrors } from '@localpro/error'; 
 import bcrypt from 'bcryptjs';
 import { env } from '../config/env';
 import jwt from 'jsonwebtoken';
@@ -14,12 +14,7 @@ export const register = async(
     //validate schema
     const result = registerSchema.safeParse(req.body);
     if(!result.success) {
-        const errors:ApiErrorField[] = result.error.issues.map(
-            (issue) => ({
-                message: issue.message,
-                filed: issue.path.join(".")
-            })
-        )
+        const errors:ApiErrorField[] = getValidationErrors(result.error.issues);
         next(new ApiError(
             400,
             "Register Validation Failed",
@@ -58,12 +53,7 @@ export const login = async(
         //validate schema
     const result = loginSchema.safeParse(req.body);
     if(!result.success) {
-        const errors:ApiErrorField[] = result.error.issues.map(
-            (issue) => ({
-                message: issue.message,
-                filed: issue.path.join(".")
-            })
-        )
+        const errors:ApiErrorField[] = getValidationErrors(result.error.issues);
         next(new ApiError(
             400,
             "Register Validation Failed",
